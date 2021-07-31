@@ -2,12 +2,6 @@ public class codes{
 
 
 //leetcode 671
-
-public int size(int n){
-    return n++;
-}
-
-
 public TreeNode right(TreeNode left,TreeNode curr){
    
    
@@ -219,8 +213,58 @@ public int[] shuffle() {
     
 }
 
+//leetcode 977
+
+public int[] sortedSquares(int[] nums) {
+    int n = nums.length, low = 0, high = n-1;        
+    int[] ans = new int[n];
+    int index = n-1;
+    
+    while(low <= high){
+        int right = Math.abs(nums[low]);
+        int left = Math.abs(nums[high]);
+        if(left >= right){
+            ans[index--] = left*left;
+            high--;
+        }else{
+            ans[index--] = right*right;
+            low++;
+        }
+    }        
+    return ans;
+}
 
 
+//leetcode 1209
+
+public String removeDuplicates(String s, int k) {
+    Stack<Pair> st = new Stack();
+    
+    for(char ch : s.toCharArray()){
+        if(st.size()>0&&st.peek().ch==ch) st.peek().freq++;
+        else st.push(new Pair(ch,1));
+        if(st.peek().freq==k) st.pop();
+    }
+    
+    StringBuilder ans = new StringBuilder();
+    while(st.size()>0){
+        Pair pair = st.pop();
+        while(pair.freq>0){
+            ans.append(pair.ch);
+            pair.freq--;
+        }
+    }
+    return ans.reverse().toString();
+}
+}
+class Pair{
+char ch;
+int freq;
+
+public Pair(char ch , int freq){
+    this.ch = ch;
+    this.freq = freq;
+}
 
 ///main=========================================================================================
 
