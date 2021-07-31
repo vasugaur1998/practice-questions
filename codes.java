@@ -3,6 +3,10 @@ public class codes{
 
 //leetcode 671
 
+public int size(int n){
+    return n++;
+}
+
 
 public TreeNode right(TreeNode left,TreeNode curr){
    
